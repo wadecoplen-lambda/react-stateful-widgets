@@ -6,7 +6,7 @@ https://tk-assets.lambdaschool.com/59036a85-0980-42c8-81ad-9afc8354497f_counter-
 
 How many slices of state do you think are necessary to act as "sources of truth" for all
 the things that change in this widget? Give it some thought before continuing reading!
-
+- Three. One for inc, dec, reset
 A naive developer might say 3 different slices:
   - The count
   - Whether the text is color crimson or royalblue
@@ -46,10 +46,11 @@ STEP 6:
   This click handler needs to use 'setCount' to set the 'count' to be zero again.
 */
 
-import React from 'react'; /* STEP 0 */
+import React, {useState} from 'react'; /* STEP 0 */
 
 export default function Counter() {
   /* STEP 1 */
+  const [count, setCount] = useSate(0)
 
   const increment = () => {
     /* STEP 4 */
@@ -64,7 +65,7 @@ export default function Counter() {
   const style = {
     fontSize: '1.5em',
     marginBottom: '0.3em',
-    color: 'royalblue', /* STEP 2 */
+    color: {count} % 2 === 0 ? 'royalblue' : 'crimson'
   };
 
   return (
